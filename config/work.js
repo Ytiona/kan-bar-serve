@@ -1,0 +1,4 @@
+module.exports = {
+  SIGN_IN_ADD_INTEGRAL: 5,
+  ADD_ARTICLE_ADD_INTEGRAL: 10
+}
