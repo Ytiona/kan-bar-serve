@@ -337,6 +337,23 @@ router.get('/getByFollow', async(req, res, next) => {
     `;
     const countRes = await querySql(countStr, [openId]);
     const queryRes = await querySql(queryStr, [openId, openId, (currentPage - 1) * pageSize, Number(pageSize)]);
+    queryRes.forEach(item => {
+      if (item.images !== '') {
+        item.images = item.images.split(',');
+      } else {
+        item.images = [];
+      }
+      if (item.open_id == openId) {
+        item.isOwn = true;
+      }
+      if (item.followed === null || item.followed === undefined) {
+        item.followed = false;
+      } else {
+        item.followed = true;
+      }
+      item.lauded = Boolean(item.lauded);
+      item.relativeTime = new Date(item.create_time).getRelativeTime();
+    })
     res.send({ code: 0, result: queryRes, total: countRes[0].count });
   } catch(e) { next(e); }
 })
