@@ -25,8 +25,6 @@ const sslOptions = {
 };
 
 
-console.log(sslOptions);
-
 var server = https.createServer(sslOptions, app);
 
 /**

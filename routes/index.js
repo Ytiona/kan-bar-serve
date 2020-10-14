@@ -27,8 +27,9 @@ router.post('/signIn', async(req, res, next) => {
   try {
     const { openId } = req.user;
     try {
+      const date = new Date();
       //提交记录到签到表
-      await querySql('INSERT INTO sign_in(open_id, sign_in_date) VALUE(?, ?)', [openId, new Date().toLocaleDateString()]);
+      await querySql('INSERT INTO sign_in(open_id, sign_in_date) VALUE(?, ?)', [openId, `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`]);
       //增加积分
       await querySql('update user SET integral = integral + ? WHERE open_id = ?', [SIGN_IN_ADD_INTEGRAL, openId]);
       //提交记录到积分记录表
@@ -37,6 +38,7 @@ router.post('/signIn', async(req, res, next) => {
       const feedbacks = await querySql('SELECT * FROM sign_in_feedback ORDER BY RAND() LIMIT 1');
       res.send({ code: 0, msg: '签到成功！', result: { feedback: feedbacks[0] } });
     } catch(e) {
+      console.log(e);
       res.send({ code: -2, msg: '签到失败！' });
     }
   } catch(e) { next(e); }
