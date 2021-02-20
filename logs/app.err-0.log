@@ -1,0 +1,105 @@
+F:\Applets\kan_bar\serve\routes\index.js:180
+      accessKeySecret: '
+                       ^
+
+SyntaxError: Invalid or unexpected token
+    at wrapSafe (internal/modules/cjs/loader.js:1047:16)
+    at Module._compile (internal/modules/cjs/loader.js:1097:27)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1153:10)
+    at Module.load (internal/modules/cjs/loader.js:977:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:877:14)
+    at Module.require (internal/modules/cjs/loader.js:1019:19)
+    at Module.Hook._require.Module.require (C:\Users\Ytiona\AppData\Roaming\npm\node_modules\pm2\node_modules\require-in-the-middle\index.js:80:39)
+    at require (internal/modules/cjs/helpers.js:77:18)
+    at Object.<anonymous> (F:\Applets\kan_bar\serve\app.js:14:21)
+    at Module._compile (internal/modules/cjs/loader.js:1133:30)
+F:\Applets\kan_bar\serve\routes\index.js:180
+      accessKeySecret: '
+                       ^
+
+SyntaxError: Invalid or unexpected token
+    at wrapSafe (internal/modules/cjs/loader.js:1047:16)
+    at Module._compile (internal/modules/cjs/loader.js:1097:27)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1153:10)
+    at Module.load (internal/modules/cjs/loader.js:977:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:877:14)
+    at Module.require (internal/modules/cjs/loader.js:1019:19)
+    at Module.Hook._require.Module.require (C:\Users\Ytiona\AppData\Roaming\npm\node_modules\pm2\node_modules\require-in-the-middle\index.js:80:39)
+    at require (internal/modules/cjs/helpers.js:77:18)
+    at Object.<anonymous> (F:\Applets\kan_bar\serve\app.js:14:21)
+    at Module._compile (internal/modules/cjs/loader.js:1133:30)
+F:\Applets\kan_bar\serve\routes\index.js:180
+      accessKeySecret: '
+                       ^
+
+SyntaxError: Invalid or unexpected token
+    at wrapSafe (internal/modules/cjs/loader.js:1047:16)
+    at Module._compile (internal/modules/cjs/loader.js:1097:27)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1153:10)
+    at Module.load (internal/modules/cjs/loader.js:977:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:877:14)
+    at Module.require (internal/modules/cjs/loader.js:1019:19)
+    at Module.Hook._require.Module.require (C:\Users\Ytiona\AppData\Roaming\npm\node_modules\pm2\node_modules\require-in-the-middle\index.js:80:39)
+    at require (internal/modules/cjs/helpers.js:77:18)
+    at Object.<anonymous> (F:\Applets\kan_bar\serve\app.js:14:21)
+    at Module._compile (internal/modules/cjs/loader.js:1133:30)
+F:\Applets\kan_bar\serve\routes\index.js:180
+      accessKeySecret: '
+                       ^
+
+SyntaxError: Invalid or unexpected token
+    at wrapSafe (internal/modules/cjs/loader.js:1047:16)
+    at Module._compile (internal/modules/cjs/loader.js:1097:27)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1153:10)
+    at Module.load (internal/modules/cjs/loader.js:977:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:877:14)
+    at Module.require (internal/modules/cjs/loader.js:1019:19)
+    at Module.Hook._require.Module.require (C:\Users\Ytiona\AppData\Roaming\npm\node_modules\pm2\node_modules\require-in-the-middle\index.js:80:39)
+    at require (internal/modules/cjs/helpers.js:77:18)
+    at Object.<anonymous> (F:\Applets\kan_bar\serve\app.js:14:21)
+    at Module._compile (internal/modules/cjs/loader.js:1133:30)
+F:\Applets\kan_bar\serve\routes\index.js:180
+      accessKeySecret: '
+                       ^
+
+SyntaxError: Invalid or unexpected token
+    at wrapSafe (internal/modules/cjs/loader.js:1047:16)
+    at Module._compile (internal/modules/cjs/loader.js:1097:27)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1153:10)
+    at Module.load (internal/modules/cjs/loader.js:977:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:877:14)
+    at Module.require (internal/modules/cjs/loader.js:1019:19)
+    at Module.Hook._require.Module.require (C:\Users\Ytiona\AppData\Roaming\npm\node_modules\pm2\node_modules\require-in-the-middle\index.js:80:39)
+    at require (internal/modules/cjs/helpers.js:77:18)
+    at Object.<anonymous> (F:\Applets\kan_bar\serve\app.js:14:21)
+    at Module._compile (internal/modules/cjs/loader.js:1133:30)
+F:\Applets\kan_bar\serve\routes\index.js:180
+      accessKeySecret: '
+                       ^
+
+SyntaxError: Invalid or unexpected token
+    at wrapSafe (internal/modules/cjs/loader.js:1047:16)
+    at Module._compile (internal/modules/cjs/loader.js:1097:27)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1153:10)
+    at Module.load (internal/modules/cjs/loader.js:977:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:877:14)
+    at Module.require (internal/modules/cjs/loader.js:1019:19)
+    at Module.Hook._require.Module.require (C:\Users\Ytiona\AppData\Roaming\npm\node_modules\pm2\node_modules\require-in-the-middle\index.js:80:39)
+    at require (internal/modules/cjs/helpers.js:77:18)
+    at Object.<anonymous> (F:\Applets\kan_bar\serve\app.js:14:21)
+    at Module._compile (internal/modules/cjs/loader.js:1133:30)
+F:\Applets\kan_bar\serve\routes\index.js:180
+      accessKeySecret: '
+                       ^
+
+SyntaxError: Invalid or unexpected token
+    at wrapSafe (internal/modules/cjs/loader.js:1047:16)
+    at Module._compile (internal/modules/cjs/loader.js:1097:27)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1153:10)
+    at Module.load (internal/modules/cjs/loader.js:977:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:877:14)
+    at Module.require (internal/modules/cjs/loader.js:1019:19)
+    at Module.Hook._require.Module.require (C:\Users\Ytiona\AppData\Roaming\npm\node_modules\pm2\node_modules\require-in-the-middle\index.js:80:39)
+    at require (internal/modules/cjs/helpers.js:77:18)
+    at Object.<anonymous> (F:\Applets\kan_bar\serve\app.js:14:21)
+    at Module._compile (internal/modules/cjs/loader.js:1133:30)

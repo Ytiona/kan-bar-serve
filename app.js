@@ -8,7 +8,6 @@ const expressJWT = require('express-jwt');//token校验
 const { PRIVATE_KEY } = require('./utils/constants');
 const { handlePrototype } = require('./utils/index');
 const fs = require('fs');
-
 handlePrototype();
 
 const indexRouter = require('./routes/index');
@@ -27,12 +26,10 @@ app.set('view engine', 'jade');
 
 app.use(cors());
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({extended: false, limit: '50mb'}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-
 //token校验配置
 app.use(expressJWT({
   secret: PRIVATE_KEY,
@@ -40,7 +37,11 @@ app.use(expressJWT({
 }).unless({
   //校验白名单 接口路径
   path: [
-    '/api/user/login'
+    '/api/user/login',
+    '/api/sendCode',
+    '/api/checkCode',
+    '/api/merageFace',
+    '/api/enterprisePay'
   ]
 }));
 

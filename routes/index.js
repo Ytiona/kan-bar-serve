@@ -2,9 +2,15 @@ const express = require('express');
 const router = express.Router();
 const querySql = require('../db/index');
 const { SIGN_IN_ADD_INTEGRAL } = require('../config/work');
-const { upload } = require('../utils');
+const { upload, randomString } = require('../utils');
 const { PIC_EXTS } = require('../utils/constants');
 const query = require('../db/index');
+const Core = require('@alicloud/pop-core');
+const request = require('request');
+const MD5 = require('md5-node');
+const Fxp = require("fast-xml-parser");
+const fs = require('fs');
+const path = require('path');
 /**
 * @api {post} /api/signIn 签到
 * @apiName signIn
@@ -170,5 +176,257 @@ router.get('/getHotSearch', async(req, res, next) => {
   } catch(e) { next(e); }
 })
 
+
+
+router.post('/sendCode', async (req, res, next) => {
+  try {
+    const { phone } = req.body;
+    const code = (Math.floor(Math.random() * 1000000) + '').padEnd(6, '0');
+    if(!/^(13\d|14[579]|15[^4\D]|17[^49\D]|18\d)\d{8}$/.test(phone)) {
+      res.send({ code: -1, msg: '手机号码格式错误！' });
+      return;
+    }
+    const client = new Core({
+      accessKeyId: 'LTAIa2w1oouakcQj',
+      accessKeySecret: 'lNf6dWvJP07XVdlvGWjhMeLtN4E5Hu',
+      endpoint: 'https://dysmsapi.aliyuncs.com',
+      apiVersion: '2017-05-25'
+    });
+    const params = {
+      "PhoneNumbers": phone,
+      "SignName": "几木设计",
+      "TemplateCode": "SMS_195721793",
+      "TemplateParam": `{ "code": ${code} }`
+    }
+    const requestOption = {
+      method: 'POST'
+    };  
+    client.request('SendSms', params, requestOption).then(async result => {
+      console.log(result);
+      if(result.Code == 'OK') {
+        await querySql(
+          'REPLACE INTO code(phone, code, create_time) VALUES (?, ?, NOW())',
+          [phone, code]
+        );
+      }
+      res.send(result);
+    }, (ex) => {
+      res.send(ex);
+    }).catch(err => {
+      res.send(err);
+    })
+  } catch (e) { next(e); }
+})
+
+router.post('/checkCode', async (req, res, next) => {
+  try {
+    const { phone, code } = req.body;
+    if(!/^(13\d|14[579]|15[^4\D]|17[^49\D]|18\d)\d{8}$/.test(phone)) {
+      res.send({ code: -1, msg: '手机号码格式错误！' });
+      return;
+    }
+    if(!code) {
+      res.send({ code: -1, msg: '未传入code' });
+      return;
+    }
+    const queryRes = await querySql(
+      'SELECT * FROM code WHERE phone = ? and code = ?',
+      [phone, code]
+    );
+    if(queryRes.length) {
+      const diffTime = Date.now() - new Date(queryRes[0].create_time).getTime();
+      if(diffTime < 5*60*1000) {
+        res.send({ code: 0, result: true, msg: '验证码正确' });
+      } else {
+        res.send({ code: 0, result: false, msg: '验证码已失效' })
+      }
+    } else {
+      res.send({ code: 0, result: false, msg: '验证码错误' });
+    }
+  } catch(e) { next(e); }
+})
+
+
+router.post('/sendNotice', async(req, res, next) => {
+  try {
+    const { phone } = req.body;
+    if(!/^(13\d|14[579]|15[^4\D]|17[^49\D]|18\d)\d{8}$/.test(phone)) {
+      res.send({ code: -1, msg: '手机号码格式错误！' });
+      return;
+    }
+    const client = new Core({
+      accessKeyId: 'LTAIa2w1oouakcQj',
+      accessKeySecret: 'lNf6dWvJP07XVdlvGWjhMeLtN4E5Hu',
+      endpoint: 'https://dysmsapi.aliyuncs.com',
+      apiVersion: '2017-05-25'
+    });
+    const params = {
+      "PhoneNumbers": phone,
+      "SignName": "几木设计",
+      "TemplateCode": "SMS_195721793"
+    }
+    const requestOption = {
+      method: 'POST'
+    };
+    client.request('SendSms', params, requestOption).then(async result => {
+      console.log(result);
+      res.send(result);
+    }, (ex) => {
+      res.send(ex);
+    }).catch(err => {
+      res.send(err);
+    })
+  } catch(e) { next(e); }
+})
+
+
+// router.post('/merageFace', async(req, res, next) => {
+//   const { template, target } = req.body;
+//   const requestData = {
+//     version: '3.0',
+//     merge_degree: 'COMPLETE',
+//     image_template: {
+//       image_type: 'URL',
+//       image: template,
+//       quality_control: 'HIGH'
+//     },
+//     image_target: {
+//       image_type: 'URL',
+//       image: target,
+//       quality_control: 'HIGH'
+//     }
+//   }
+//   console.log(JSON.stringify(requestData))
+//   try {
+//     const api = "https://aip.baidubce.com/rest/2.0/face/v1/merge?access_token=24.be06bb9d7f074d726fe46fe31fd30db3.2592000.1613974870.282335-23579690";
+//     request({
+//       url: api,
+//       method: 'POST',
+//       json: true,
+//       headers: {
+//         "content-type": "application/json",
+//       },
+//       body: requestData
+//     }, (err, response, body) => {
+//       res.send(body);
+//     })
+//   }catch(err) { next(err); }
+// })
+
+
+router.post('/enterprisePay', async(req, res, next) => {
+  // const config = {
+  //   mch_appid: 'wx9cd69def9486c6e8',
+  //   mchid: '1563974291',
+  //   openid: 'ool7FuNsYbj_StR9EI9lX4H1i0R0',
+  // }
+  const config = {
+    mch_appid: 'wx62c4c2186bdda7f6',
+    mchid: '1551011991',
+    openid: 'ool7FuNsYbj_StR9EI9lX4H1i0R0',
+  }
+  const params = {
+    ...config,
+    amount: 1,
+    check_name: 'NO_CHECK',
+    desc: 'hhhh',
+    nonce_str: randomString(),
+    partner_trade_no: Date.now() + randomString(19),
+    sign: ''
+  }
+
+  Object.keys(params).sort().filter(item => item != 'sign').forEach(item => {
+    params.sign += `${item}=${params[item]}&`
+  })
+  
+  // params.sign += 'key=9tdimXhNwaf2ko4IPwNeBdFoCDjGJZTY';
+  params.sign += 'key=Yu093231sai1985yu093231sai080522';
+
+  console.log(params.sign);
+
+  params.sign = MD5(params.sign).toUpperCase();
+
+  const obj2xml = '<xml>' + new Fxp.j2xParser({
+    format: true,
+    attrNodeName: "_attrs",
+    textNodeName: "#text",
+    cdataTagName: "_cdata"
+  }).parse(params) + '</xml>';
+
+  request({
+    url: 'https://api.mch.weixin.qq.com/mmpaymkttransfers/promotion/transfers',
+    method: 'POST',
+    body: obj2xml,
+    headers: {
+      'content-type': 'application/xml; charset=UTF-8'
+    },
+    agentOptions: {
+      cert: fs.readFileSync(path.join(__dirname, '../cert/apiclient_cert.pem')).toString(), 
+      key: fs.readFileSync(path.join(__dirname, '../cert/apiclient_key.pem')).toString()
+   }
+  }, (err, response, body) => {
+    res.send({ result: Fxp.parse(body), params, obj2xml });
+  })
+})
+
+
+// Depends on tencentcloud-sdk-nodejs version 4.0.3 or higher
+const tencentcloud = require("tencentcloud-sdk-nodejs");
+
+const CvmClient = tencentcloud.cvm.v20170312.Client;
+
+const clientConfig = {
+  credential: {
+    secretId: "AKIDOhqkNm8tbZN6ijiEAwZbNlHbLrXxEJJE",
+    secretKey: "rRlvrVt86ozuZ2DZkVO0Ls98bASjmX3J",
+  },
+  region: "ap-guangzhou",
+  profile: {
+    httpProfile: {
+      endpoint: "cvm.tencentcloudapi.com",
+    },
+  },
+};
+
+const client = new CvmClient(clientConfig);
+const params = {};
+
+
+
+router.post('/merageFace', async(req, res, next) => {
+  try {
+    const { imgUrl, modelId } = req.body;
+    // Depends on tencentcloud-sdk-nodejs version 4.0.3 or higher
+    const tencentcloud = require("tencentcloud-sdk-nodejs");
+
+    const FacefusionClient = tencentcloud.facefusion.v20181201.Client;
+
+    const clientConfig = {
+      credential: {
+        secretId: "AKIDOhqkNm8tbZN6ijiEAwZbNlHbLrXxEJJE",
+        secretKey: "rRlvrVt86ozuZ2DZkVO0Ls98bASjmX3J",
+      },
+      region: "ap-guangzhou",
+      profile: {
+        httpProfile: {
+          endpoint: "facefusion.tencentcloudapi.com",
+        },
+      },
+    };
+
+    const client = new FacefusionClient(clientConfig);
+    const params = req.body;
+    client.FuseFace(params).then(
+      (data) => {
+        console.log(data);
+        res.send(data);
+      },
+      (err) => {
+        console.error("error", err);
+        res.send(err);
+      }
+    );
+  }catch(err) { next(err); }
+})
 
 module.exports = router;

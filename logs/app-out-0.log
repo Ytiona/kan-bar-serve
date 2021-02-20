@@ -1,0 +1,72 @@
+2020-11-16 21:47:48: UnauthorizedError: No authorization token was found
+    at middleware (F:\Applets\kan_bar\serve\node_modules\express-jwt\lib\index.js:79:21)
+    at F:\Applets\kan_bar\serve\node_modules\express-unless\index.js:47:5
+    at Layer.handle [as handle_request] (F:\Applets\kan_bar\serve\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:317:13)
+    at F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:335:12)
+    at next (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:275:10)
+    at SendStream.error (F:\Applets\kan_bar\serve\node_modules\serve-static\index.js:121:7)
+    at SendStream.emit (events.js:310:20)
+    at SendStream.error (F:\Applets\kan_bar\serve\node_modules\send\index.js:270:17) {
+  code: 'credentials_required',
+  status: 401,
+  inner: { message: 'No authorization token was found' }
+}
+2020-11-16 21:47:48: [0mGET /api/user/getUserInfo [33m401 [0m7.524 ms - 40[0m
+2020-11-16 21:47:48: UnauthorizedError: No authorization token was found
+    at middleware (F:\Applets\kan_bar\serve\node_modules\express-jwt\lib\index.js:79:21)
+    at F:\Applets\kan_bar\serve\node_modules\express-unless\index.js:47:5
+    at Layer.handle [as handle_request] (F:\Applets\kan_bar\serve\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:317:13)
+    at F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:335:12)
+    at next (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:275:10)
+    at SendStream.error (F:\Applets\kan_bar\serve\node_modules\serve-static\index.js:121:7)
+    at SendStream.emit (events.js:310:20)
+    at SendStream.error (F:\Applets\kan_bar\serve\node_modules\send\index.js:270:17) {
+  code: 'credentials_required',
+  status: 401,
+  inner: { message: 'No authorization token was found' }
+}
+2020-11-16 21:47:48: [0mGET /favicon.ico [33m401 [0m0.715 ms - 40[0m
+2020-11-16 21:58:57: ClientError [NotFoundError]: Not Found
+    at F:\Applets\kan_bar\serve\app.js:55:8
+    at Layer.handle [as handle_request] (F:\Applets\kan_bar\serve\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:317:13)
+    at F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:335:12)
+    at next (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:275:10)
+    at F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:635:15
+    at next (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:260:14)
+    at Function.handle (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:174:3)
+    at router (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:47:12)
+2020-11-16 21:58:57: [0mGET /api/sendCode [33m404 [0m6.655 ms - 36[0m
+2020-11-16 21:58:57: UnauthorizedError: No authorization token was found
+    at middleware (F:\Applets\kan_bar\serve\node_modules\express-jwt\lib\index.js:79:21)
+    at F:\Applets\kan_bar\serve\node_modules\express-unless\index.js:47:5
+    at Layer.handle [as handle_request] (F:\Applets\kan_bar\serve\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:317:13)
+    at F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:335:12)
+    at next (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:275:10)
+    at SendStream.error (F:\Applets\kan_bar\serve\node_modules\serve-static\index.js:121:7)
+    at SendStream.emit (events.js:310:20)
+    at SendStream.error (F:\Applets\kan_bar\serve\node_modules\send\index.js:270:17) {
+  code: 'credentials_required',
+  status: 401,
+  inner: { message: 'No authorization token was found' }
+}
+2020-11-16 21:58:57: [0mGET /favicon.ico [33m401 [0m1.523 ms - 40[0m
+2020-11-17 20:34:22: ClientError [NotFoundError]: Not Found
+    at F:\Applets\kan_bar\serve\app.js:56:8
+    at Layer.handle [as handle_request] (F:\Applets\kan_bar\serve\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:317:13)
+    at F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:335:12)
+    at next (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:275:10)
+    at F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:635:15
+    at next (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:260:14)
+    at Function.handle (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:174:3)
+    at router (F:\Applets\kan_bar\serve\node_modules\express\lib\router\index.js:47:12)
+2020-11-17 20:34:22: [0mGET /api/sendCode?phone=15675458207 [33m404 [0m9.160 ms - 36[0m

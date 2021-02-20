@@ -130,7 +130,6 @@ router.post('/uploadAvatar', upload({ fileid: 'avatar', extList: PIC_EXTS, saveP
  */
 router.post('/checkNickname', async(req, res, next) => {
   try {
-    
     const { openId } = req.user;
     const { nickname } = req.body;
     if(nickname == '') { res.send({ code: -1, msg: '用户昵称不能为空！' }); }
