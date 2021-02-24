@@ -41,7 +41,8 @@ app.use(expressJWT({
     '/api/sendCode',
     '/api/checkCode',
     '/api/merageFace',
-    '/api/enterprisePay'
+    '/api/enterprisePay',
+    '/api/LFDay/merageFace'
   ]
 }));
 

@@ -395,7 +395,19 @@ const params = {};
 
 router.post('/merageFace', async(req, res, next) => {
   try {
-    const { imgUrl, modelId } = req.body;
+    const types = [
+      'qc_306161_630640_5',
+      'qc_306161_827318_4',
+      'qc_306161_255217_3',
+      'qc_306161_205819_2'
+    ];
+    const { ModelId, ProjectId } = req.body;
+    if(!types.includes(ModelId) || ProjectId != '306161') {
+      res.send({
+        code: '-1'
+      })
+      return;
+    }
     // Depends on tencentcloud-sdk-nodejs version 4.0.3 or higher
     const tencentcloud = require("tencentcloud-sdk-nodejs");
 
@@ -416,6 +428,8 @@ router.post('/merageFace', async(req, res, next) => {
 
     const client = new FacefusionClient(clientConfig);
     const params = req.body;
+
+    
     client.FuseFace(params).then(
       (data) => {
         console.log(data);
@@ -428,5 +442,61 @@ router.post('/merageFace', async(req, res, next) => {
     );
   }catch(err) { next(err); }
 })
+
+
+router.post('/LFDay/merageFace', async(req, res, next) => {
+  try {
+    const types = [
+      ['qc_306188_767450_8', '306188_8_1'],
+      ['qc_306188_372833_7', '306188_7_1'],
+      ['qc_306188_138095_6', '306188_6_1'],
+      ['qc_306188_841530_5', '306188_5_1'],
+      ['qc_306188_455123_4', '306188_4_1'],
+      ['qc_306188_119040_3', '306188_3_1'],
+      ['qc_306188_378586_2', '306188_2_1'],
+      ['qc_306188_790733_1', '306188_1_1'],
+    ];
+    const { ModelId, ProjectId } = req.body;
+    if(types.findIndex(item => item[0] === ModelId) === -1 || ProjectId != '306188') {
+      res.send({
+        code: '-1'
+      })
+      return;
+    }
+    // Depends on tencentcloud-sdk-nodejs version 4.0.3 or higher
+    const tencentcloud = require("tencentcloud-sdk-nodejs");
+
+    const FacefusionClient = tencentcloud.facefusion.v20181201.Client;
+
+    const clientConfig = {
+      credential: {
+        secretId: "AKIDg7Liqk3BcQwGLCIKfolT6aqrces7p82n",
+        secretKey: "mHttpW1KOeem9Or4JN4WR8tOcwK3ZgaJ",
+      },
+      region: "ap-guangzhou",
+      profile: {
+        httpProfile: {
+          endpoint: "facefusion.tencentcloudapi.com",
+        },
+      },
+    };
+
+    const client = new FacefusionClient(clientConfig);
+    const params = req.body;
+
+    
+    client.FuseFace(params).then(
+      (data) => {
+        console.log(data);
+        res.send(data);
+      },
+      (err) => {
+        console.error("error", err);
+        res.send(err);
+      }
+    );
+  }catch(err) { next(err); }
+})
+
 
 module.exports = router;
