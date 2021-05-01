@@ -14,6 +14,8 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const articleRouter = require('./routes/article');
 const commentRouter = require('./routes/comment');
+const unlessRouter = require('./routes/unless');
+
 
 const app = express();
 
@@ -42,7 +44,9 @@ app.use(expressJWT({
     '/api/checkCode',
     '/api/merageFace',
     '/api/enterprisePay',
-    '/api/LFDay/merageFace'
+    '/api/LFDay/merageFace',
+    '/api/ss/merageFace',
+    '/api/ljsy/merageFace'
   ]
 }));
 
@@ -50,6 +54,7 @@ app.use('/api', indexRouter);
 app.use('/api/user', usersRouter);
 app.use('/api/article', articleRouter);
 app.use('/api/comment', commentRouter);
+app.use('/api', unlessRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
