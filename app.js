@@ -7,14 +7,12 @@ const cors = require('cors');//跨域中间件
 const expressJWT = require('express-jwt');//token校验
 const { PRIVATE_KEY } = require('./utils/constants');
 const { handlePrototype } = require('./utils/index');
-const fs = require('fs');
 handlePrototype();
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const articleRouter = require('./routes/article');
 const commentRouter = require('./routes/comment');
-const unlessRouter = require('./routes/unless');
 
 
 const app = express();
@@ -39,14 +37,7 @@ app.use(expressJWT({
 }).unless({
   //校验白名单 接口路径
   path: [
-    '/api/user/login',
-    '/api/sendCode',
-    '/api/checkCode',
-    '/api/merageFace',
-    '/api/enterprisePay',
-    '/api/LFDay/merageFace',
-    '/api/ss/merageFace',
-    '/api/ljsy/merageFace'
+    '/api/user/login'
   ]
 }));
 
@@ -54,7 +45,6 @@ app.use('/api', indexRouter);
 app.use('/api/user', usersRouter);
 app.use('/api/article', articleRouter);
 app.use('/api/comment', commentRouter);
-app.use('/api', unlessRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
