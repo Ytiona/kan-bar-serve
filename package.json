@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "serve": "nodemon ./bin/www --env development",
     "pm2": "pm2 start ecosystem.config.js --env production",
-    "stop": "pm2 stop"
+    "stop": "pm2 stop",
+    "apidoc": "apidoc"
   },
   "dependencies": {
     "@alicloud/pop-core": "^1.7.10",

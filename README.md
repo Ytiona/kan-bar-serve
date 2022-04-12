@@ -1,3 +1,6 @@
+### apidoc，运行：npm run apidoc 即可在根目录下生成api文档
+![所有的表](screenshot/12.png)
+
 ### 所有的表
 ![所有的表](screenshot/1.png)
 
