@@ -1,3 +1,5 @@
+前端代码仓库: [https://gitee.com/ytiona/kan_bar_applets](https://gitee.com/ytiona/kan_bar_applets)
+
 ### apidoc，运行：npm run apidoc 即可在根目录下生成api文档
 ![所有的表](screenshot/12.png)
 
